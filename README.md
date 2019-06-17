@@ -4,9 +4,9 @@ This is a simple flask site to ask a user questions and log their responses to a
 To start, clone this repository. Enter the directory the repository is in, and do the following in the command line:
 
 python
->>from main import db
->>db.create_all()
->>exit()
+from main import db
+db.create_all()
+exit()
 
 now, in the command line:
 
