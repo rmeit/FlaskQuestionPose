@@ -39,6 +39,8 @@ def index():
 @app.route('/check',methods=['POST'])
 def check():
 	global username
+	global i
+	i = 1
 	user_input=request.form['user_input']
 	bot_response = "Send \"hello\" to begin!"
 	username = user_input
