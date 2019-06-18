@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Flipping Images Task</title>
+  <style type="text/css">
+  	html, body #wrap {
+  		width: 1200px;
+  		margin: 0px;
+  		padding: 10px;
+  	}
+  </style>
+</head>
+<body>
+
+<div id="wrap">
+<img src="/static/download.jpg" id="ImageToFlip">
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+<script>
+	function sendTimestamp () {
+		var ts = new Date().valueOf();
+		$.ajax({
+		    type: "POST",
+		    url: "http://192.168.31.33/timestamp",
+		    // The key needs to match your method's input parameter (case-sensitive).
+		    data: JSON.stringify({ timestamp: ts }),
+		    contentType: "text/plain",
+		    dataType: "json",
+		    success: function(data){alert(data);},
+		    failure: function(errMsg) {
+		        alert(errMsg);
+		    }
+		});
+	}
+	count = 0
+	function flipMe(){
+		sendTimestamp()
+		if(count%2 == 0){
+			document.getElementById("ImageToFlip").style.filter = "invert(100%)";
+			count = count+1;
+		}
+		else{
+			document.getElementById("ImageToFlip").style.filter = "invert(0%)";
+			count = count+1;
+		}
+
+	}
+
+	setInterval(flipMe, 1000)
+
+
+</script>
+
+</body>
+</html>
