@@ -1,12 +1,14 @@
 from flask import Flask, render_template, request
 import os
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
 import datetime;
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
 database_file = "sqlite:///{}".format(os.path.join(project_dir, "chats.db"))
 
 app = Flask(__name__)
+CORS(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
 app.secret_key = 'lmao'
 
@@ -67,6 +69,10 @@ def process():
 	return render_template('index1.html',user_input=user_input,
 		bot_response=bot_response
 		)
+
+@app.route('/hicontrast', methods=['GET', 'POST'])
+def hicontrast():
+    return render_template('hicontrast.html')
 
 if __name__=='__main__':
 	app.run(debug=True,port=5000)
